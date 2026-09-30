@@ -1,121 +1,234 @@
-.title div {
-  margin: 75px auto;
-  align-items: center;
-  text-align: center;
-  width: 300px;
-}
-.title div h6 {
-  position: relative;
-  margin: 0 auto;
-  width: fit-content;
-  color: rgb(230, 106, 24);
-}
-.title div:first-child h1 {
-  font-size: 40px;
-  width: 300px;
-}
-.title div h6:first-child::after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 12px;
-  background-color: #ef626b;
-  left: -4px !important;
-}
-.grid {
+.filtersWrap {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 46px;
+}
+.filters {
+  display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
-  margin-bottom: 100px;
-  margin: 20px auto 100px auto;
-  width: 75%;
+  justify-content: center;
+  gap: 10px;
 }
-.grid .card {
-  background-color: #eee;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 15px !important;
-  width: 250px;
-}
-.grid div img {
-  border-radius: 10px;
-}
-.descripcard {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.filters button {
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.35s var(--ease);
 }
-.cardtitle {
-  padding: 8px 12px;
-  background-color: #fbd9cf;
-  border-radius: 7px;
+.filters button small {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  background: var(--surface);
+  color: var(--muted);
+  transition: inherit;
 }
-.salury {
-  color: #f35c17;
-  font-weight: bold;
-  font-size: 20px;
+.filters button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
 }
-.card .street {
-  font-weight: bold;
-  font-size: 17px;
-  margin-bottom: 10px;
+.filters .on,
+.filters .on:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
 }
-.areas {
-  display: flex;
-  gap: 5px;
-  position: relative;
+.filters .on small {
+  background: var(--accent);
+  color: #fff;
 }
-.areas .left {
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px !important;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease),
+    border-color 0.5s;
 }
-.areas::after {
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+.media::after {
   content: "";
   position: absolute;
-  width: 100%;
-  height: 1px;
-  background-color: #d2d5db;
-  left: 0;
-  bottom: -25px;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s;
 }
-.areas .left p {
-  color: #a09c99;
+.card:hover .media img {
+  transform: scale(1.1) rotate(1deg);
 }
-.areas .left p span {
-  color: black;
-  font-weight: bold;
-  margin-left: 5px;
+.card:hover .media::after {
+  opacity: 1;
 }
-.areas .right p {
-  color: #a09c99;
+.cardtitle {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #16171d;
+  font-size: 0.78rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
 }
-.areas .right p span {
-  color: black;
-  font-weight: bold;
-  margin-left: 5px;
+.like {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: #16171d;
+  transition: transform 0.35s var(--ease), color 0.3s;
 }
-.areas .right p span {
-  color: black;
-  font-weight: bold;
-  margin-left: 5px;
+.like:hover {
+  transform: scale(1.12);
 }
-.card button {
-  position: relative;
-  background-color: black;
-  border: none;
-  color: white;
-  width: fit-content;
-  margin: 0 auto;
-  padding: 12px 25px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 25px;
+.liked {
+  color: var(--accent);
+  animation: heart 0.5s var(--ease);
+}
+@keyframes heart {
+  40% {
+    transform: scale(1.35);
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px 24px 24px;
+}
+.salury {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.street {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin: 4px 0 18px;
+}
+.street svg {
+  color: var(--muted);
+  flex: none;
+}
+.areas {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  padding: 14px 0;
+  border-block: 1px dashed var(--line);
+  margin-bottom: 20px;
+}
+.areas li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+.areas li svg {
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+.areas li span {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.areas li small {
+  font-size: 0.66rem;
+  color: var(--muted);
+}
+
+.cta {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 6px 6px 20px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.4s, color 0.4s;
+}
+.cta span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--bg);
+  transition: transform 0.45s var(--ease), background 0.4s;
+}
+.cta:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.cta:hover span {
+  background: #fff;
+  color: var(--accent);
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 400px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

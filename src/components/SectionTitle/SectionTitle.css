@@ -1,19 +1,29 @@
 .title {
-  color: orangered;
-  padding-left: 5px;
-  position: relative;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
-
-.title::before {
-  content: "";
-  width: 2px;
-  height: 80%;
-  background-color: orangered;
-  position: absolute;
-  top: 10%;
-  left: 0;
+.title.center {
+  justify-content: center;
+}
+.title.light {
+  color: #ffb599;
+}
+.title-bar {
+  width: 34px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s var(--ease) 0.3s;
+}
+.title.is-visible .title-bar {
+  transform: scaleX(1);
 }

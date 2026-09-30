@@ -1,0 +1,153 @@
+.testimonials {
+  background: var(--surface);
+}
+.t-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+.t-arrows {
+  display: flex;
+  gap: 12px;
+}
+.t-arrows button {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  transition: background 0.35s, color 0.35s, border-color 0.35s,
+    transform 0.35s var(--ease);
+}
+.t-arrows button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+.t-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 48px) / 3);
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  scrollbar-width: none;
+  padding: 14px 4px 30px;
+  margin: -14px -4px 0;
+}
+.t-track::-webkit-scrollbar {
+  display: none;
+}
+.t-card {
+  position: relative;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 34px 30px 30px;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.t-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+}
+.t-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease);
+}
+.t-card:hover::after,
+.t-card.current::after {
+  transform: scaleX(1);
+}
+.t-quote {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: 0.12;
+}
+.t-stars {
+  display: flex;
+  gap: 3px;
+  color: #ffb400;
+}
+.t-card blockquote {
+  flex: 1;
+  color: var(--text);
+  font-size: 0.97rem;
+  line-height: 1.8;
+}
+.t-card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.t-avatar {
+  width: 50px;
+  height: 50px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #ff9a5a);
+}
+.t-card figcaption strong {
+  display: block;
+  color: var(--ink);
+}
+.t-card figcaption small {
+  color: var(--muted);
+}
+
+.t-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.t-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--line);
+  transition: width 0.45s var(--ease), background 0.3s;
+}
+.t-dots button.on {
+  width: 34px;
+  background: var(--accent);
+}
+
+@media (max-width: 1000px) {
+  .t-track {
+    grid-auto-columns: calc((100% - 24px) / 2);
+  }
+}
+@media (max-width: 640px) {
+  .t-track {
+    grid-auto-columns: 88%;
+  }
+}

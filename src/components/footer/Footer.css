@@ -1,11 +1,116 @@
 .footer {
-  background-color: black;
-  width: 100%;
-  height: 60px;
-  color: white;
+  background: #0d0e13;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.92rem;
+  padding-top: clamp(60px, 8vw, 90px);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr 1.4fr;
+  gap: 40px;
+  padding-bottom: 50px;
+}
+.footer .logo {
+  color: #fff;
+}
+.f-brand p {
+  margin: 16px 0 22px;
+  max-width: 300px;
+  line-height: 1.8;
+}
+.f-social {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  text-align: center;
+  gap: 10px;
+}
+.f-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: background 0.3s, transform 0.4s var(--ease);
+}
+.f-social a:hover {
+  background: var(--accent);
+  transform: translateY(-4px);
+}
+.footer h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+.footer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer ul a {
+  position: relative;
+  transition: color 0.3s, padding 0.4s var(--ease);
+}
+.footer ul a:hover {
+  color: var(--accent);
+  padding-left: 6px;
+}
+.f-note {
+  margin-bottom: 14px;
+}
+.f-news {
+  display: flex;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s;
+}
+.f-news:focus-within {
+  border-color: var(--accent);
+}
+.f-news input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 16px;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+}
+.f-news button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  transition: transform 0.4s var(--ease);
+}
+.f-news button:hover {
+  transform: rotate(-45deg);
+}
+.f-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.82rem;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .f-bottom {
+    justify-content: center;
+    text-align: center;
+  }
 }

@@ -1,57 +1,91 @@
-import React from "react";
+import { useState } from "react";
 import "./Featured.css";
 import Card from "./Card/Card";
 import SectionTitle from "../SectionTitle/SectionTitle";
-function Featured() {
-  return (
-    <div className="featured">
-      <div className="imgs">
-        <img src="/images/featured.jpg" />
-        <img src="/images/featured-icon.png" />
-      </div>
-      <div>
-        <SectionTitle title="Featured" />
-        <h1>Best Appartment & Sea View</h1>
-        <div className="useful">
-          <p>Best useful links?</p>
-          <p>
-            Get the best villa website template in HTML CSS and Bootstrap for
-            your business.TemplateMoprovides you the{" "}
-            <span>best free CSS templates</span> in the world.Please tell your
-            friends about it.
-            <br />
-            <br />
-            How does this work?
-          </p>
+import { IoAdd } from "react-icons/io5";
 
-          <p>Why is Villa Agency the best?</p>
+const faqs = [
+  {
+    q: "Best useful links?",
+    a: "Browse our curated listings, virtual tours and neighbourhood guides — everything you need to compare homes side by side before you ever book a visit.",
+  },
+  {
+    q: "How does this work?",
+    a: "Pick a property, schedule a visit online and one of our agents will walk you through the home, the paperwork and financing options in a single appointment.",
+  },
+  {
+    q: "Why is Villa Agency the best?",
+    a: "Twelve years of experience, verified listings only, transparent fees and a dedicated agent from first viewing until the keys are in your hand.",
+  },
+];
+
+const infos = [
+  { img: "/images/info-icon-01.png", title: "250 m²", more: "Total Flat Space" },
+  { img: "/images/info-icon-02.png", title: "Contract", more: "Contract Ready" },
+  { img: "/images/info-icon-03.png", title: "Payment", more: "Payment Process" },
+  { img: "/images/info-icon-04.png", title: "Safety", more: "24/7 Under Control" },
+];
+
+function Featured() {
+  const [open, setOpen] = useState(0);
+
+  return (
+    <section id="about" className="section">
+      <div className="wrap featured">
+        <div className="imgs reveal" data-anim="left">
+          <div className="img-frame">
+            <img src="/images/featured.jpg" alt="Apartment with sea view" loading="lazy" />
+          </div>
+          <div className="img-badge">
+            <img src="/images/featured-icon.png" alt="" />
+          </div>
+          <div className="img-tag">
+            <strong>12+</strong>
+            <span>Years of trust</span>
+          </div>
+        </div>
+
+        <div className="featured-text">
+          <SectionTitle title="Featured" />
+          <h2 className="h-display reveal" style={{ "--d": "80ms" }}>
+            Best Apartment <br />& <em>Sea View</em>
+          </h2>
+          <div className="useful">
+            {faqs.map((f, i) => (
+              <div
+                key={f.q}
+                className="reveal"
+                style={{ "--d": `${150 + i * 90}ms` }}
+              >
+              <div className={`acc ${open === i ? "open" : ""}`}>
+                <button
+                  className="acc-head"
+                  onClick={() => setOpen(open === i ? -1 : i)}
+                  aria-expanded={open === i}
+                >
+                  {f.q}
+                  <span className="acc-ic">
+                    <IoAdd />
+                  </span>
+                </button>
+                <div className="acc-body">
+                  <div>
+                    <p>{f.a}</p>
+                  </div>
+                </div>
+              </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="infCard reveal" data-anim="right">
+          {infos.map((c, i) => (
+            <Card key={c.title} {...c} index={i} />
+          ))}
         </div>
       </div>
-      <div className="infCard">
-        <Card
-          img="/images/info-icon-01.png"
-          title="250 m2"
-          more="Total Flat Space"
-        />
-        <Card
-          img="/images/info-icon-02.png"
-          title="Contract"
-          more="Contract Ready"
-        />
-        <Card
-          img="/images/info-icon-03.png"
-          title="Payment"
-          more="Payment"
-          imgTitle="Process"
-        />
-        <Card
-          img="/images/info-icon-04.png"
-          title="Safety"
-          more="24/7 Under"
-          imgTitle="Controle"
-        />
-      </div>
-    </div>
+    </section>
   );
 }
 

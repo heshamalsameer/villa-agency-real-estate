@@ -1,48 +1,175 @@
 .view {
   position: relative;
-  margin: 50px 0px;
+  padding: clamp(80px, 11vw, 130px) 0 0;
+  margin-bottom: clamp(60px, 8vw, 100px);
+  isolation: isolate;
 }
-.view .backimg {
-  width: 100%;
-  height: 100vh;
+.view-bg {
   position: absolute;
-  z-index: -50;
-  object-fit: cover;
+  inset: 0 0 32% 0;
+  z-index: -1;
+  background: linear-gradient(rgba(10, 10, 16, 0.7), rgba(10, 10, 16, 0.75)),
+    url("/images/banner-03.jpg") center / cover fixed;
 }
-
-.view .videoFrame {
-  width: 85%;
+@media (hover: none) {
+  .view-bg {
+    background-attachment: scroll;
+  }
 }
 .view .content {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: space-around;
   gap: 50px;
-  padding-top: 70px;
 }
-.view .viewtitle {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.viewtitle .h-display {
+  color: #fff;
 }
-.view .viewtitle p:last-child {
-  color: white;
-  font-size: 50px;
+.viewtitle .h-display em {
+  color: #ffb599;
 }
+
+.video-wrap {
+  width: 100%;
+}
+.video-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 16 / 7;
+}
+.videoFrame {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--ease);
+}
+.video-card:hover .videoFrame {
+  transform: scale(1.06);
+}
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92px;
+  height: 92px;
+  margin: -46px 0 0 -46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-size: 2rem;
+  padding-left: 5px;
+  box-shadow: 0 16px 40px rgba(243, 85, 37, 0.5);
+  transition: transform 0.4s var(--ease);
+}
+.play::before,
+.play::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  animation: ring 2.4s ease-out infinite;
+}
+.play::after {
+  animation-delay: 1.2s;
+}
+.play:hover {
+  transform: scale(1.1);
+}
+@keyframes ring {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
 .viewcards {
-  display: flex;
-  /* gap: 50px; */
-  width: 90%;
-  justify-content: space-around;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-@media screen and (max-width: 992px) {
+
+/* modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(5, 5, 10, 0.85);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.4s var(--ease);
+}
+.modal-box {
+  position: relative;
+  width: min(1000px, 100%);
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  animation: popIn 0.55s var(--ease);
+}
+.modal-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s, transform 0.4s var(--ease);
+}
+.modal-close:hover {
+  background: var(--accent);
+  transform: rotate(90deg);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .video-card {
+    aspect-ratio: 4 / 3;
+  }
   .viewcards {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+    grid-template-columns: 1fr;
+  }
+  .view-bg {
+    inset: 0 0 45% 0;
+  }
+  .play {
+    width: 72px;
+    height: 72px;
+    margin: -36px 0 0 -36px;
+    font-size: 1.6rem;
   }
 }

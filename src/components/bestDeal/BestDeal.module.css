@@ -1,192 +1,172 @@
 .bestDeal {
-  background-color: #eee;
-  padding: 80px 0;
+  background: var(--surface);
 }
-.container {
-  width: 80%;
-  margin: 0px auto;
-  /* padding: 100px 0; */
-}
-.container div:first-child {
+.header {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.container div .header {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 50px;
 }
-.container div .header div:first-child {
-  width: 300px;
+.header h2 {
+  max-width: 460px;
+}
+
+/* tabs with sliding pill */
+.tabs {
   position: relative;
-  gap: 5px;
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
 }
-.header div:first-child h6 {
-  padding-left: 6px;
-  color: rgb(230, 106, 24);
+.tabs button {
+  position: relative;
+  z-index: 1;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: color 0.4s;
+  white-space: nowrap;
 }
-.header div:first-child h1 {
-  font-size: 40px;
-  width: 300px;
+.tabs button:hover {
+  color: var(--ink);
 }
-div h6:first-child::after {
-  content: "";
+.tabs .tabActive,
+.tabs .tabActive:hover {
+  color: #fff;
+}
+.pill {
   position: absolute;
-  width: 2px;
-  height: 12px;
-  background-color: #ef626b;
+  top: 6px;
+  bottom: 6px;
   left: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 8px 20px rgba(243, 85, 37, 0.35);
+  transition: transform 0.55s var(--ease), width 0.55s var(--ease);
 }
-.container div .header div:last-child {
-  display: flex;
-  gap: 25px;
-}
-.header div:last-child button:first-child {
-  padding: 15px 25px;
-  font-size: 15px;
-  background-color: #ea5e29;
-  color: white;
-  border: none;
-  border-radius: 3px;
-}
-.header div:last-child button {
-  cursor: pointer;
-  padding: 15px 25px;
-  font-size: 15px;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 3px;
-}
-.container div .midlle {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: start;
-}
+
+/* content */
 .midlle {
-  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1fr;
+  gap: clamp(24px, 3vw, 44px);
+  align-items: center;
 }
-.midlle .card {
-  width: 200px;
-  padding: 20px 15px;
-  background-color: #fafafa;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.card {
+  padding: 10px 26px;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  box-shadow: var(--shadow);
 }
-.midlle .card div {
+.row {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
-  gap: 0;
-  position: relative;
+  gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  animation: rowIn 0.7s var(--ease) both;
+  animation-delay: calc(var(--i) * 70ms);
 }
-.midlle .card div:not(:last-child)::after {
-  position: absolute;
-  content: "";
+.row:last-child {
+  border-bottom: none;
+}
+.row p {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.row span {
+  color: var(--ink);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.imgBox {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 4.2;
+  box-shadow: var(--shadow-lg);
+  animation: imgIn 0.9s var(--ease) both;
+}
+.imgBox img {
   width: 100%;
-  height: 1px;
-  background-color: #f0f2f5;
-  bottom: -15px;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
 }
-.midlle .card div p {
-  color: #b9becb;
-}
-.midlle .card div span {
-  color: black;
-  font-size: 25px;
-  font-weight: bold;
-}
-.midlle img {
-  height: 350px;
-  border-radius: 13px;
+.imgBox:hover img {
+  transform: scale(1.07);
 }
 .description {
-  width: 250px;
+  animation: rowIn 0.8s var(--ease) 0.2s both;
 }
 .description h4 {
-  font-size: 20px;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
 }
 .description p {
-  color: #5c5d6e;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 35px;
-  margin: 15px 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  margin-bottom: 16px;
 }
-.description div:last-child {
-  position: relative;
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  padding-left: 25px;
-
-  align-items: center;
-  color: white;
-  text-align: center;
-  font-size: 15px;
-  font-weight: bold;
-  height: 60px;
-  border-radius: 50px;
-  background-color: black;
+.description :global(.btn) {
+  margin-top: 10px;
 }
 .grIcon {
-  position: absolute;
-  font-size: 25px;
-  left: -30px;
-  background-color: #f35525;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  padding: 10px;
+  font-size: 1.4rem;
 }
-@media screen and (max-width: 768px) {
-  .container div .header {
-    justify-content: center !important;
+.grIcon path {
+  stroke: #fff;
+}
+
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
   }
-  .container div .header div:first-child {
-    text-align: center;
+}
+@keyframes imgIn {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0 round 28px);
   }
-  div h6:first-child::after {
-    left: 119px !important;
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0 round 28px);
   }
-  .header div:last-child button {
-    cursor: pointer;
-    padding: 10px 20px !important;
-    font-size: 7px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 3px;
+}
+
+@media screen and (max-width: 1000px) {
+  .midlle {
+    grid-template-columns: 1fr 1fr;
   }
-  .header div:last-child button:first-child {
-    padding: 10px 20px !important;
-    font-size: 10px;
-    background-color: #ea5e29;
-    color: white;
-    border: none;
-    border-radius: 3px;
+  .imgBox {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
   }
-  .container div .midlle {
-    flex-direction: column;
-    align-items: center;
-    margin: 15px 0px !important;
-    gap: 15px;
+}
+@media screen and (max-width: 640px) {
+  .midlle {
+    grid-template-columns: 1fr;
   }
-  .midlle .card {
-    width: 270px;
+  .tabs {
+    width: 100%;
+    overflow-x: auto;
   }
-  .midlle img {
-    width: 300px;
-    height: 300px;
+  .tabs button {
+    flex: 1;
+    padding: 11px 14px;
+    font-size: 0.85rem;
   }
-  .description {
-    width: 300px;
-  }
+}
+.midlle > * {
+  min-width: 0;
 }

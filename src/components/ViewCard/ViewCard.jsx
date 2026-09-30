@@ -1,10 +1,20 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import "./ViewCard.css";
-function ViewCard(props) {
+import { useCountUp, useInView } from "../../hooks/useReveal";
+
+function ViewCard({ number, string, delay = 0 }) {
+  const [ref, inView] = useInView(0.5);
+  const value = useCountUp(number, inView);
+
   return (
-    <div className="viewcard">
-      <p className="number">{props.number}</p>
-      <p className="string">{props.string}</p>
+    <div ref={ref} className="reveal" style={{ "--d": `${delay}ms` }}>
+      <div className="viewcard">
+        <p className="number">
+          {value}
+          <sup>+</sup>
+        </p>
+        <p className="string">{string}</p>
+      </div>
     </div>
   );
 }

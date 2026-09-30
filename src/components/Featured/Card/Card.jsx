@@ -1,15 +1,15 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import "./Card.css";
-function Card(props) {
+
+function Card({ img, title, more }) {
   return (
     <div className="inform">
-      <div>
-        <img src={props.img} />
-        <p>{props.imgTitle}</p>
+      <div className="inform-ic">
+        <img src={img} alt="" />
       </div>
       <div>
-        <p>{props.title}</p>
-        <p>{props.more}</p>
+        <p className="inform-title">{title}</p>
+        <p className="inform-more">{more}</p>
       </div>
     </div>
   );

@@ -1,36 +1,56 @@
 .viewcard {
-  width: 20%;
-  display: flex;
-  background-color: #ffeee9;
-  padding: 15px 36px;
-  gap: 20px;
-  align-items: center;
   position: relative;
-  justify-content: center;
-  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 26px 30px;
+  border-radius: var(--radius-lg);
+  background: var(--accent-soft);
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 .viewcard::before {
   content: "";
-  width: 30px;
-  height: 30px;
-  background-color: #f35525;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: -40px;
+  right: -40px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  transform: translate(50%, -50%);
+  background: var(--accent);
+  opacity: 0.12;
+  transition: transform 0.7s var(--ease), opacity 0.5s;
 }
-.viewcard .string {
-  text-align: left;
-  font-size: 18px;
+.viewcard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+}
+.viewcard:hover::before {
+  transform: scale(5);
+  opacity: 1;
+}
+.viewcard > * {
+  position: relative;
+  transition: color 0.4s;
 }
 .viewcard .number {
-  color: #f35525;
-  font-size: 45px;
-  font-weight: bold;
+  color: var(--accent);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
-@media screen and (max-width: 992px) {
-  .viewcard {
-    width: 70%;
-  }
+.viewcard .number sup {
+  font-size: 0.5em;
+}
+.viewcard .string {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.viewcard:hover .number,
+.viewcard:hover .string {
+  color: #fff;
 }

@@ -1,10 +1,14 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import "./SectionTitle.css";
-function SectionTitle(props) {
+
+function SectionTitle({ title, center = false, light = false }) {
   return (
-    <>
-      <p className="title">{props.title}</p>
-    </>
+    <p
+      className={`title reveal ${center ? "center" : ""} ${light ? "light" : ""}`}
+    >
+      <span className="title-bar" />
+      {title}
+    </p>
   );
 }
 

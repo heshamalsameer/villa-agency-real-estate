@@ -1,22 +1,51 @@
+import { useMemo, useState } from "react";
 import { Card } from "./Card";
 import styles from "./Properties.module.css";
 import { arry } from "../../utils";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const Properties = () => {
+  const filters = useMemo(
+    () => ["All", ...Array.from(new Set(arry.map((p) => p.title)))],
+    []
+  );
+  const [filter, setFilter] = useState("All");
+  const list = filter === "All" ? arry : arry.filter((p) => p.title === filter);
+
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>
-        <div>
-          <h6>PROPERTIES</h6>
-          <h1>We Provide The Best Property You Like</h1>
+    <section id="properties" className="section">
+      <div className="wrap">
+        <div className="section-head">
+          <SectionTitle title="Properties" center />
+          <h2 className="h-display reveal" style={{ "--d": "80ms" }}>
+            We Provide The Best <em>Property</em> You Like
+          </h2>
+        </div>
+
+        <div className={`reveal ${styles.filtersWrap}`} style={{ "--d": "140ms" }}>
+          <div className={styles.filters}>
+            {filters.map((f) => (
+              <button
+                key={f}
+                className={filter === f ? styles.on : ""}
+                onClick={() => setFilter(f)}
+              >
+                {f}
+                <small>
+                  {f === "All" ? arry.length : arry.filter((p) => p.title === f).length}
+                </small>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.grid} key={filter}>
+          {list.map((item, index) => (
+            <Card key={item.street} item={item} index={index} />
+          ))}
         </div>
       </div>
-      <div className={styles.grid}>
-        {arry.map((item, index) => (
-          <Card key={index} item={item} />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 export default Properties;

@@ -1,71 +1,261 @@
 .NavBar {
+  position: sticky;
+  top: 0;
+  z-index: 800;
+  background: transparent;
+  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease),
+    backdrop-filter 0.4s;
+}
+.NavBar.scrolled {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 1px 0 var(--line), var(--shadow-sm);
+}
+.nav-inner {
+  height: var(--nav-h);
   display: flex;
-  justify-content: space-between;
-  margin: 10px auto;
   align-items: center;
-  padding: 10px 2px;
-  /* box-shadow: 0px 2px 2px 0px rgb(180, 178, 178); */
-  padding: 10px 5%;
+  justify-content: space-between;
+  gap: 24px;
+  animation: navIn 0.9s var(--ease) 0.1s both;
+}
+@keyframes navIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+.logo span {
+  color: var(--accent);
+  display: inline-block;
+  animation: pulseDot 2.4s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  50% {
+    transform: scale(1.5);
+  }
 }
 
 .ulNavBar {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  column-gap: 60px;
+  gap: clamp(18px, 2.6vw, 38px);
   list-style: none;
-  font-size: medium;
+}
+.ulNavBar a {
+  position: relative;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text);
+  padding: 6px 0;
+  transition: color 0.3s;
+}
+.ulNavBar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease);
+}
+.ulNavBar a:hover,
+.ulNavBar a.active-link {
+  color: var(--accent);
+}
+.ulNavBar a:hover::after,
+.ulNavBar a.active-link::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.theme-toggle {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  overflow: hidden;
+  transition: background 0.3s, transform 0.4s var(--ease);
+}
+.theme-toggle:hover {
+  transform: rotate(20deg);
+  color: var(--accent);
+}
+.theme-toggle .ti {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+  transform: translateY(120%) rotate(90deg);
+  opacity: 0;
+  transition: transform 0.5s var(--ease), opacity 0.4s;
+}
+.theme-toggle .ti.on {
+  transform: none;
+  opacity: 1;
+}
+
+/* burger */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ink);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  z-index: 1001;
+  position: relative;
+}
+.burger span {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--bg);
+  transition: transform 0.45s var(--ease), opacity 0.3s, width 0.3s;
+}
+.burger span:nth-child(2) {
+  width: 12px;
+  align-self: center;
+  transform: translateX(3px);
+}
+.burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* mobile drawer */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+  z-index: 998;
+}
+.menu-overlay.show {
+  opacity: 1;
+  visibility: visible;
 }
 .ulmenu {
-  position: absolute;
-  top: 60px;
-  left: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(360px, 86vw);
+  background: var(--bg);
+  z-index: 999;
+  padding: 100px 32px 32px;
   display: flex;
-  width: 100%;
   flex-direction: column;
-  align-items: center;
-  row-gap: 20px;
+  justify-content: space-between;
+  transform: translateX(105%);
+  transition: transform 0.6s var(--ease);
+  box-shadow: var(--shadow-lg);
+}
+.ulmenu.open {
+  transform: none;
+}
+.ulmenu ul {
   list-style: none;
-  font-size: medium;
-  background-color: rgb(230, 230, 230);
-  padding: 10px;
-  transform: translateX(-150%);
-  transition: 0.5s all;
-  z-index: 10;
-  height: 75vh;
 }
-.active {
-  transform: translateX(0%);
-  display: none;
+.ulmenu li,
+.ulmenu .menu-foot {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
-.ulNavBar li a,
+.ulmenu.open li,
+.ulmenu.open .menu-foot {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(0.15s + var(--i) * 0.07s);
+}
 .ulmenu li a {
-  text-decoration: none;
-  color: black;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  transition: color 0.3s, padding 0.4s var(--ease);
 }
-.ulNavBar .home a,
-.ulmenu .home a {
-  color: orangered;
+.ulmenu li a small {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 500;
 }
-.ulmenu li {
-  border-bottom: solid 1px rgb(214, 214, 214);
-  width: 100%;
-  text-align: center;
-  padding-bottom: 10px;
+.ulmenu li a:hover,
+.ulmenu li a.active-link {
+  color: var(--accent);
+  padding-left: 8px;
 }
-.NavBar .menu {
-  display: none;
+.menu-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background: var(--surface);
+  color: var(--ink);
+  transition: transform 0.5s var(--ease), background 0.3s, color 0.3s;
 }
+.menu-close:hover {
+  transform: rotate(90deg);
+  background: var(--accent);
+  color: #fff;
+}
+.menu-foot {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.menu-foot p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 @media screen and (max-width: 992px) {
-  .ulNavBar {
+  .ulNavBar,
+  .nav-cta {
     display: none;
   }
-
-  .NavBar .menu {
-    display: block;
-    cursor: pointer;
-  }
-  .active {
+  .burger {
     display: flex;
   }
 }

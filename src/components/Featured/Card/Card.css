@@ -1,22 +1,50 @@
 .inform {
   display: flex;
-  flex-direction: row;
-  gap: 10px;
-  width: 170px;
   align-items: center;
-  justify-content: center;
-  border-bottom: solid 1px rgb(202, 202, 202);
-  padding: 16px 10px;
+  gap: 16px;
+  padding: 22px 6px;
+  border-bottom: 1px solid var(--line);
+  transition: transform 0.4s var(--ease);
 }
-.inform p:last-child {
-  color: rgb(179, 178, 178);
-  font-size: 12px;
+.inform:last-child {
+  border-bottom: none;
 }
-.inform img {
-  height: 40px;
+.inform:hover {
+  transform: translateX(6px);
 }
-@media screen and (max-width: 992px) {
+.inform-ic {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  transition: background 0.4s, transform 0.5s var(--ease);
+}
+.inform:hover .inform-ic {
+  background: var(--accent);
+  transform: rotate(-8deg) scale(1.05);
+}
+.inform-ic img {
+  height: 30px;
+  transition: filter 0.4s;
+}
+.inform:hover .inform-ic img {
+  filter: brightness(0) invert(1);
+}
+.inform-title {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+.inform-more {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+@media screen and (max-width: 1100px) {
   .inform {
-    width: 100%;
+    border-bottom: none;
+    padding: 16px;
   }
 }

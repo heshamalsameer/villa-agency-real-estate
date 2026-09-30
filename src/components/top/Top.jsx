@@ -1,32 +1,37 @@
 import styles from "./Top.module.css";
 import { ImMap } from "react-icons/im";
-import { FaFacebook } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { IoLogoLinkedin } from "react-icons/io5";
-import { FaInstagram } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { FaFacebookF, FaXTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa6";
+
+const socials = [
+  { icon: FaFacebookF, label: "Facebook" },
+  { icon: FaXTwitter, label: "X (Twitter)" },
+  { icon: FaLinkedinIn, label: "LinkedIn" },
+  { icon: FaInstagram, label: "Instagram" },
+];
 
 const Top = () => {
   return (
-    <div className={styles.top}>
-      <div className={styles.left}>
-        <img src="/images/email-icon.png" alt="" />
-        <h6 className={styles.info}>info@company.com</h6>
-        <ImMap className={styles.imMap} />
-        <h6>Sunny Isles Beach, FL 33160</h6>
-      </div>
+    <div className={styles.topBar}>
+      <div className={`wrap ${styles.top}`}>
+        <div className={styles.left}>
+          <a href="mailto:info@company.com" className={styles.item}>
+            <HiOutlineMail className={styles.ic} />
+            info@company.com
+          </a>
+          <span className={styles.sep} />
+          <span className={styles.item}>
+            <ImMap className={styles.ic} />
+            Sunny Isles Beach, FL 33160
+          </span>
+        </div>
 
-      <div className={styles.right}>
-        <div className={styles.icons}>
-          <FaFacebook className={styles.icon} />
-        </div>
-        <div className={styles.icons}>
-          <FaTwitter className={styles.icon} />
-        </div>
-        <div className={styles.icons}>
-          <IoLogoLinkedin className={styles.icon} />
-        </div>
-        <div className={styles.icons}>
-          <FaInstagram className={styles.icon} />
+        <div className={styles.right}>
+          {socials.map(({ icon: Icon, label }) => (
+            <a key={label} href="#" aria-label={label} className={styles.icons}>
+              <Icon />
+            </a>
+          ))}
         </div>
       </div>
     </div>
