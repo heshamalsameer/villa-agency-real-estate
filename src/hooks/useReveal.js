@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-/** Adds `is-visible` to every `.reveal` element inside the page once it scrolls into view. */
 export function useRevealAll() {
   useEffect(() => {
     if (!("IntersectionObserver" in window)) {
@@ -24,7 +23,6 @@ export function useRevealAll() {
         .querySelectorAll(".reveal:not(.is-visible)")
         .forEach((el) => io.observe(el));
     scan();
-    // pick up elements rendered later (tabs, filters…)
     const mo = new MutationObserver(scan);
     mo.observe(document.body, { childList: true, subtree: true });
     return () => {
@@ -34,7 +32,6 @@ export function useRevealAll() {
   }, []);
 }
 
-/** Returns [ref, inView] — true once the element has entered the viewport. */
 export function useInView(threshold = 0.4) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -56,7 +53,6 @@ export function useInView(threshold = 0.4) {
   return [ref, inView];
 }
 
-/** Animated count-up from 0 to `end` once `start` is true. */
 export function useCountUp(end, start, duration = 1800) {
   const [value, setValue] = useState(0);
   useEffect(() => {
@@ -75,7 +71,6 @@ export function useCountUp(end, start, duration = 1800) {
   return value;
 }
 
-/** Current vertical scroll position (throttled with rAF). */
 export function useScrollY() {
   const [y, setY] = useState(0);
   useEffect(() => {

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import styles from "./Properties.module.css";
 import { IoBedOutline, IoLocationOutline, IoHeart, IoHeartOutline } from "react-icons/io5";

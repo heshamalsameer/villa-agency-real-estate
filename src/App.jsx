@@ -19,7 +19,6 @@ function getInitialTheme() {
     const saved = localStorage.getItem("villa-theme");
     if (saved) return saved;
   } catch {
-    /* storage unavailable */
   }
   return window.matchMedia?.("(prefers-color-scheme: dark)").matches
     ? "dark"
@@ -35,7 +34,6 @@ function App() {
     try {
       localStorage.setItem("villa-theme", theme);
     } catch {
-      /* ignore */
     }
   }, [theme]);
 

@@ -5,7 +5,6 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoStar } from "react-icons/io5";
 import { RiDoubleQuotesL } from "react-icons/ri";
 
-// Sample testimonials — replace with real client feedback.
 const items = [
   { name: "Sarah Mitchell", role: "Bought a villa in Miami", text: "From the first call to the final signature everything was smooth. Our agent found us a villa that ticked every box — and a few we didn't know we had." },
   { name: "Omar Haddad", role: "Penthouse owner", text: "The video tours saved us weeks. We shortlisted three homes online, visited in one afternoon and closed within the month. Outstanding service." },

@@ -39,14 +39,12 @@ function Slider() {
   const next = useCallback(() => go(current + 1), [current, go]);
   const prev = useCallback(() => go(current - 1), [current, go]);
 
-  // autoplay
   useEffect(() => {
     if (paused) return;
     const t = setTimeout(next, DURATION);
     return () => clearTimeout(t);
   }, [current, paused, next]);
 
-  // pause when tab hidden
   useEffect(() => {
     const onVis = () => setPaused(document.hidden);
     document.addEventListener("visibilitychange", onVis);
@@ -58,7 +56,6 @@ function Slider() {
     if (e.key === "ArrowLeft") prev();
   };
 
-  // swipe / drag
   const onPointerDown = (e) => {
     drag.current = { x: e.clientX, active: true };
   };

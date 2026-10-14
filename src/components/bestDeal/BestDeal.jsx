@@ -60,7 +60,6 @@ const BestDeal = () => {
   const [ind, setInd] = useState({ left: 0, width: 0 });
   const d = deals[active];
 
-  // move the sliding pill under the active tab
   useLayoutEffect(() => {
     const update = () => {
       const el = tabsRef.current[active];

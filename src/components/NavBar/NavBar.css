@@ -115,7 +115,6 @@
   opacity: 1;
 }
 
-/* burger */
 .burger {
   display: none;
   width: 44px;
@@ -151,7 +150,6 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* mobile drawer */
 .menu-overlay {
   position: fixed;
   inset: 0;

@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap");
 
-/* ============ Design tokens ============ */
 :root {
   --accent: #f35525;
   --accent-600: #d9431a;
@@ -44,7 +43,6 @@
   color-scheme: dark;
 }
 
-/* ============ Reset ============ */
 *,
 *::before,
 *::after {
@@ -101,7 +99,6 @@ h4 {
   border-radius: 6px;
 }
 
-/* ============ Utilities ============ */
 .wrap {
   width: min(var(--container), 100% - 40px);
   margin-inline: auto;
@@ -179,7 +176,6 @@ h4 {
   padding: 0 28px;
 }
 
-/* ============ Reveal on scroll ============ */
 .reveal {
   opacity: 0;
   transform: translateY(40px);

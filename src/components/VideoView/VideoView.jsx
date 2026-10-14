@@ -4,7 +4,6 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import ViewCard from "../ViewCard/ViewCard";
 import { IoPlay, IoClose } from "react-icons/io5";
 
-// 👉 Replace with your own YouTube video id (the part after "watch?v=")
 const VIDEO_ID = "ScMzIvxBSi4";
 
 function VideoView() {

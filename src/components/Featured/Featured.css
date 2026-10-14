@@ -5,7 +5,6 @@
   align-items: center;
 }
 
-/* image */
 .imgs {
   position: relative;
 }
@@ -85,7 +84,6 @@
   }
 }
 
-/* accordion */
 .featured-text .h-display {
   margin-bottom: 30px;
 }
@@ -151,7 +149,6 @@
   line-height: 1.75;
 }
 
-/* info card column */
 .infCard {
   padding: 10px 26px;
   border-radius: var(--radius-lg);

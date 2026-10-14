@@ -16,7 +16,7 @@ function validate(v) {
 const ContectUs = () => {
   const [values, setValues] = useState(initial);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState("idle"); // idle | sending | sent
+  const [status, setStatus] = useState("idle");
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +30,6 @@ const ContectUs = () => {
     setErrors(er);
     if (Object.keys(er).length) return;
     setStatus("sending");
-    // simulate a request — connect to your backend / form service here
     setTimeout(() => {
       setStatus("sent");
       setValues(initial);

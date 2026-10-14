@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./Schedule.css";
 import { AiFillSchedule } from "react-icons/ai";
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import "./NavBar.css";
 import Schedule from "./Schedule/Schedule";
@@ -19,7 +18,6 @@ function NavBar({ theme, onToggleTheme }) {
   const y = useScrollY();
   const scrolled = y > 40;
 
-  // highlight the section currently in view
   useEffect(() => {
     const sections = links
       .map((l) => document.getElementById(l.id))
@@ -33,7 +31,6 @@ function NavBar({ theme, onToggleTheme }) {
     return () => io.disconnect();
   }, []);
 
-  // lock scroll + close on Escape while the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     const onKey = (e) => e.key === "Escape" && setOpen(false);

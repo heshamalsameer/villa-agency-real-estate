@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./ViewCard.css";
 import { useCountUp, useInView } from "../../hooks/useReveal";
 

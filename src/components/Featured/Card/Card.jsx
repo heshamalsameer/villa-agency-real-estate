@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./Card.css";
 
 function Card({ img, title, more }) {

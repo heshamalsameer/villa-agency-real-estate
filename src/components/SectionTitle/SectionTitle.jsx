@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./SectionTitle.css";
 
 function SectionTitle({ title, center = false, light = false }) {
